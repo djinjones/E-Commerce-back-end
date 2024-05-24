@@ -26,9 +26,10 @@ router.get('/:id', async (req, res) => {
     });
     if (!selectedTag) {
       res.status(404).json({ message: 'No tag found witht that ID!', data: selectedTag, });
+      return;
     }
     console.log('tag-routes GET by id');
-    res.status(200).json({ message: 'Tag found' });
+    res.status(200).json({ message: 'Tag found', data: selectedTag, });
   } catch (err) {
     console.error(err);
     console.log('tag-routes GET by id');
@@ -60,9 +61,10 @@ router.put('/:id', async (req, res) => {
     });
     if(!updateTag) {
       res.status(404).json({ message: 'No tag found with that ID!' });
+      return;
     }
     console.log('tag-routes PUT');
-    res.status(500).json({ message: 'Tag updated'});
+    res.status(200).json({ message: 'Tag updated'});
   } catch (err) {
     console.error(err);
     console.log('tag-routes PUT');

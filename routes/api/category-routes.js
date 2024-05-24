@@ -25,7 +25,8 @@ router.get('/:id', async (req, res) => {
       include: [{ model: Product }],
     });
     if (!categoryById) {
-      res.status(404).json({ message: 'No category found witht that ID!' })
+      res.status(404).json({ message: 'No category found witht that ID!' });
+      return;
     }
     console.log('category-routes GET by id');
     res.status(200).json({ message: 'Category found', data: categoryById, });
@@ -60,7 +61,8 @@ try {
   });
   console.log('category-routes PUT');
   if (!updateCategory) {
-    res.status(404).json({ message: 'No category found witht that ID!' })
+    res.status(404).json({ message: 'No category found witht that ID!' });
+    return;
   }
   res.status(200).json({ message: 'Category updated' })
 } catch (err) {

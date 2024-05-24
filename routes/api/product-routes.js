@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include: [{model: Category}, {model: Tag, through: ProductTag}],
     });
     console.log('product-routes GET');
-    res.status(200).json({ message: 'Products found', data: productList, });
+    res.status(200).json(productList);
   } catch (err) {
     console.error(err);
     console.log('product-routes GET');
@@ -28,9 +28,10 @@ router.get('/:id', async (req, res) => {
     });
     if (!productList) {
       res.status(404).json({ message: 'No product found with that ID!' });
+      return;
     }
     console.log('product-routes GET by id');
-    res.status(200).json({ message: 'Product found', data: productList, });
+    res.status(200).json(productList);
   } catch (err) {
     console.error(err);
     console.log('product-routes GET by id');
